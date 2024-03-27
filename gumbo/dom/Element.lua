@@ -238,6 +238,11 @@ local function serialize(node, buf)
             end
             buf:write('="', attr.escapedValue, '"')
         end
+
+        if Node.getters.implicitEndTag(node) then
+            buf:write("/")
+        end
+
         buf:write(">")
         if not voidElements[tag] then
             local children = node.childNodes
