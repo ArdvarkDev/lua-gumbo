@@ -239,7 +239,7 @@ local function serialize(node, buf)
             buf:write('="', attr.escapedValue, '"')
         end
 
-        if Node.getters.implicitEndTag(node) then
+        if Node.getters.implicitEndTag(node) and not node:hasChildNodes() then
             buf:write("/")
         end
 
